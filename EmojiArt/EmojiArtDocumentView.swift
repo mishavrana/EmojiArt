@@ -36,6 +36,11 @@ struct EmojiArtDocumentView: View {
                 } else {
                     ForEach(document.emojis) { emoji in
                         Text(emoji.text)
+                            .contextMenu {
+                                AnimatedActionButton(title: "Delete", systemImage: "xmark.bin") {
+                                    document.deleteEmoji(emoji)
+                                }
+                            }
                             .font(.system(size: fontSize(for: emoji)))
                             .fixedSize(horizontal: true, vertical: true)
                             .border(Color.red, width: checkSelection(for: emoji) ? 2 : 0)
